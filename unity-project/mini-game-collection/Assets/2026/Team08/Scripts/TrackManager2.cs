@@ -7,6 +7,8 @@ public class TrackManager2 : MonoBehaviour
 {
     public GameObject[] trackSegments;
 
+    public float score2;
+
     public float startingSpeed = 5f;
     public float acceleration = 0.5f;
 
@@ -41,7 +43,7 @@ public class TrackManager2 : MonoBehaviour
             foreach (GameObject TrackSegment in trackSegments)
             {
                 TrackSegment.transform.position += Vector3.left * speed * Time.deltaTime;
-
+                score2 = score2 + (speed * 1);
                 // Check if segment has left the screen
                 if (TrackSegment.transform.position.x < -17)
                 {

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.Windows.Speech;
 
 public class NewBehaviourScript : MonoBehaviour
 {
     public GameObject[] trackSegments;
+
+    public float score1;
 
     public float startingSpeed = 5f;
     public float acceleration = 0.5f;
@@ -41,9 +44,9 @@ public class NewBehaviourScript : MonoBehaviour
         {
             foreach (GameObject TrackSegment in trackSegments)
             {
-                TrackSegment.transform.position +=
-                    Vector3.left * speed * Time.deltaTime;
-
+                TrackSegment.transform.position += Vector3.left * speed * Time.deltaTime;
+                score1 = score1 + (speed * 1);
+               
                 // Check if segment has left the screen
                 if (TrackSegment.transform.position.x < -17)
                 {
