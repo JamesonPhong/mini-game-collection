@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows.Speech;
 
 public class NewBehaviourScript : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class NewBehaviourScript : MonoBehaviour
 
     public float segmentWidth = 1f;
 
+    //Limits how fast the player can go
+    public float speedCap = 7f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,27 +28,38 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         speed = Mathf.Min(speed + acceleration * Time.deltaTime, maxSpeed);
 
-        foreach (GameObject TrackSegment in trackSegments)
+        if (speed > speedCap) { speed = speedCap; }
+        if (speed == 0) {
+            startingSpeed = 5f;
+            acceleration = 0.5f;
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow))
         {
-            TrackSegment.transform.position +=
-                Vector3.left * speed * Time.deltaTime;
-
-            // Check if segment has left the screen
-            if (TrackSegment.transform.position.x < -17)
+            foreach (GameObject TrackSegment in trackSegments)
             {
-                // Find the rightmost segment
-                float rightmost = GetRightmostSegment();
+                TrackSegment.transform.position +=
+                    Vector3.left * speed * Time.deltaTime;
 
-                // Reposition the segment
-                TrackSegment.transform.position = new Vector3(
-                    rightmost + segmentWidth,
-                    TrackSegment.transform.position.y,
-                    TrackSegment.transform.position.z
-                );
+                // Check if segment has left the screen
+                if (TrackSegment.transform.position.x < -17)
+                {
+                    // Find the rightmost segment
+                    float rightmost = GetRightmostSegment();
+
+                    // Reposition the segment
+                    TrackSegment.transform.position = new Vector3(
+                        rightmost + segmentWidth,
+                        TrackSegment.transform.position.y,
+                        TrackSegment.transform.position.z
+                    );
+                }
             }
         }
+        if (Input.GetKeyUp(KeyCode.RightArrow)) { speed = 0; }
     }
     float GetRightmostSegment()
     {
