@@ -22,10 +22,14 @@ public class NewBehaviourScript : MonoBehaviour
     //Limits how fast the player can go
     public float speedCap = 7f;
 
+    // Reference to the PlayerAnimations script
+    public PlayerAnimations playAnims;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Get the PlayerAnimations component from the Player1 GameObject
+        playAnims = GameObject.Find("Player1").GetComponent<PlayerAnimations>();
     }
 
     // Update is called once per frame
@@ -61,8 +65,10 @@ public class NewBehaviourScript : MonoBehaviour
                     );
                 }
             }
+            // Set the "isMoving" parameter in the Animator to 1 when the player is moving
+            playAnims.anim.SetFloat("isMoving", 1);
         }
-        if (Input.GetKeyUp(KeyCode.RightArrow)) { speed = 0; }
+        if (Input.GetKeyUp(KeyCode.RightArrow)) { speed = 0; playAnims.anim.SetFloat("isMoving", 0); }
     }
     float GetRightmostSegment()
     {
