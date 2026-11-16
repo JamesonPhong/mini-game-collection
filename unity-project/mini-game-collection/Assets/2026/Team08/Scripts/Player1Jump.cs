@@ -7,26 +7,33 @@ public class Player1Jump : MonoBehaviour
 {   
     float position;
 
-    float timer = 5;
+    float timer = 175;
 
     bool hasJumped;
+
+    // Reference to the PlayerAnimations script
+    public PlayerAnimations playAnims;
+
     // Start is called before the first frame update
     void Start()
     {
         position = transform.position.y;
+
+        // Get the PlayerAnimations component from the Player1 GameObject
+        playAnims = GameObject.Find("Player1").GetComponent<PlayerAnimations>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (hasJumped == false)
             {
                 hasJumped = true;
                 position += 2; //Moves their y position up
-                
+                playAnims.anim.SetBool("isJumping", true); // Sets the animation to jumping
             }
 
 
@@ -37,7 +44,8 @@ public class Player1Jump : MonoBehaviour
             {
                 position -= 2;
                 hasJumped = false;
-                timer = 500;
+                timer = 175;
+                playAnims.anim.SetBool("isJumping", false); // Sets the animation back to running / idle
             }
             else if (timer >= 0) { timer = timer - 1; } //Counts down how long they can stay in the air
         }
