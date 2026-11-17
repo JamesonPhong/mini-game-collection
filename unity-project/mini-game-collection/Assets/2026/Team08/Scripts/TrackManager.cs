@@ -15,13 +15,11 @@ public class NewBehaviourScript : MonoBehaviour
 
     public float segmentWidth = 1f;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         speed = Mathf.Min(speed + acceleration * Time.deltaTime, maxSpeed);
@@ -31,13 +29,10 @@ public class NewBehaviourScript : MonoBehaviour
             TrackSegment.transform.position +=
                 Vector3.left * speed * Time.deltaTime;
 
-            // Check if segment has left the screen
             if (TrackSegment.transform.position.x < -17)
             {
-                // Find the rightmost segment
                 float rightmost = GetRightmostSegment();
 
-                // Reposition the segment
                 TrackSegment.transform.position = new Vector3(
                     rightmost + segmentWidth,
                     TrackSegment.transform.position.y,
