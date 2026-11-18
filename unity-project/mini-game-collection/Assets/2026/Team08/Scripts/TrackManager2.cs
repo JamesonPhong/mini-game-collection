@@ -6,6 +6,8 @@ public class TrackManager2 : MonoBehaviour
 {
     public GameObject[] trackSegments;
 
+    public GameObject[] obstacles;
+
     public float score2;
 
     public float startingSpeed = 5f;
@@ -33,6 +35,7 @@ public class TrackManager2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SpawnObjects();
         if (Input.GetKey(KeyCode.D))
         {
             speed = Mathf.Min(speed + acceleration * Time.deltaTime, speedCap);
@@ -92,5 +95,28 @@ public class TrackManager2 : MonoBehaviour
     public float GetSpeed()
     {
         return speed;
+    }
+
+    /// <summary>
+    /// Spawns objects as player travels
+    /// </summary>
+    public void SpawnObjects()
+    {
+        
+        if (score2 > 1) //Will not generate object when player is first starting
+        {
+            int randomNumber = 0;
+            if (speed < 2) { randomNumber = Random.Range(1, 3000); }
+            else if ((speed >= 2) && (speed < 4)) { randomNumber = Random.Range(1, 2000); }
+            else if ((speed >= 4) && (speed < 7)) { randomNumber = Random.Range(1, 1000); }
+            else if ((speed >= 7) && (speed < 10)) { randomNumber = Random.Range(1, 500); }
+            else if ((speed >= 10)) { randomNumber = Random.Range(1, 300); }
+            if (randomNumber == 1)
+            {
+                //int randomObstacle = Random.Range(0, 1);
+                Instantiate(obstacles[0], new Vector3(transform.position.x + 10, transform.position.y - 2, transform.position.z), Quaternion.identity);
+            }
+        }
+
     }
 }
