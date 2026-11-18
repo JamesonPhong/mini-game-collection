@@ -11,6 +11,8 @@ public class Player1Jump : MonoBehaviour
 
     bool hasJumped;
 
+    GameObject Shadow1;
+
     // Reference to the PlayerAnimations script
     public PlayerAnimations playAnims;
 

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public class NewBehaviourScript : MonoBehaviour
+public class TrackManager1 : MonoBehaviour
 {
     public GameObject[] trackSegments;
 
@@ -33,22 +33,15 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        speed = Mathf.Min(speed + acceleration * Time.deltaTime, maxSpeed);
-
-        if (speed > speedCap) { speed = speedCap; }
-        if (speed == 0) {
-            startingSpeed = 5f;
-            acceleration = 0.5f;
-        }
-
         if (Input.GetKey(KeyCode.RightArrow))
         {
+            speed = Mathf.Min(speed + acceleration * Time.deltaTime, speedCap);
+
             foreach (GameObject TrackSegment in trackSegments)
             {
                 TrackSegment.transform.position += Vector3.left * speed * Time.deltaTime;
                 score1 = score1 + (speed * 1);
-               
+
                 // Check if segment has left the screen
                 if (TrackSegment.transform.position.x < -17)
                 {
@@ -65,9 +58,16 @@ public class NewBehaviourScript : MonoBehaviour
             }
             // Set the "isMoving" parameter in the Animator to 1 when the player is moving
             playAnims.anim.SetFloat("isMoving", 1);
+
         }
-        if (Input.GetKeyUp(KeyCode.RightArrow)) { speed = 0; playAnims.anim.SetFloat("isMoving", 0); }
+        else
+        {
+            speed = 0;
+            playAnims.anim.SetFloat("isMoving", 0);
+        }
     }
+
+
     float GetRightmostSegment()
     {
         float rightmost =
@@ -86,6 +86,10 @@ public class NewBehaviourScript : MonoBehaviour
     }
     public void ResetSpeed()
     {
-        speed = startingSpeed;
+        speed = 0f;
+    }
+
+    public float GetSpeed(){
+        return speed;
     }
 }

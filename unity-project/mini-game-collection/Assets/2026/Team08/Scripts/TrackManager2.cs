@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.Windows.Speech;
+
 
 public class TrackManager2 : MonoBehaviour
 {
@@ -27,27 +26,22 @@ public class TrackManager2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Get the PlayerAnimations component from the Player2 GameObject
+        // Get the PlayerAnimations component from the Player1 GameObject
         playAnims = GameObject.Find("Player2").GetComponent<PlayerAnimations>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        speed = Mathf.Min(speed + acceleration * Time.deltaTime, maxSpeed);
-
-        if (speed > speedCap){ speed = speedCap; }
-        if (speed == 0)
+        if (Input.GetKey(KeyCode.D))
         {
-            startingSpeed = 5f;
-            acceleration = 0.5f;
-        }
+            speed = Mathf.Min(speed + acceleration * Time.deltaTime, speedCap);
 
-        if (Input.GetKey(KeyCode.D)) {
             foreach (GameObject TrackSegment in trackSegments)
             {
                 TrackSegment.transform.position += Vector3.left * speed * Time.deltaTime;
                 score2 = score2 + (speed * 1);
+
                 // Check if segment has left the screen
                 if (TrackSegment.transform.position.x < -17)
                 {
@@ -64,9 +58,16 @@ public class TrackManager2 : MonoBehaviour
             }
             // Set the "isMoving" parameter in the Animator to 1 when the player is moving
             playAnims.anim.SetFloat("isMoving", 1);
+
         }
-        if (Input.GetKeyUp(KeyCode.D)) { speed = 0; playAnims.anim.SetFloat("isMoving", 0); }
+        else
+        {
+            speed = 0;
+            playAnims.anim.SetFloat("isMoving", 0);
+        }
     }
+
+
     float GetRightmostSegment()
     {
         float rightmost =
@@ -85,6 +86,11 @@ public class TrackManager2 : MonoBehaviour
     }
     public void ResetSpeed()
     {
-        speed = startingSpeed;
+        speed = 0f;
+    }
+
+    public float GetSpeed()
+    {
+        return speed;
     }
 }

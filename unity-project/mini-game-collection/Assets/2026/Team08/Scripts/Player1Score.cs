@@ -13,7 +13,7 @@ public class Player1Score : MonoBehaviour
     private TextMeshProUGUI Play1Score; 
 
     //Player script to recieve the public float score of the first player. 
-    public NewBehaviourScript player;
+    public TrackManager1 player;
 
     // Start is called before the first frame update
     void Start()
