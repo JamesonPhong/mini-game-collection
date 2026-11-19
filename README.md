@@ -18,3 +18,13 @@ GitHub Pages are enabled for this project. Successful builds on `main` will be p
 
 If you are interested to know more about how this automation works, consider reviewing [.github/workflows/ci.yml](https://github.com/MohawkRaphaelT/mini-game-collection/blob/main/.github/workflows/ci.yml)'s source and comments. In brief, a GitHub Action is run that starts up a Linux virtual machine with Unity on it, pulls down the repository, creates a WebGL build, then pushes the artifacts (build) to GitHub Pages.
 
+#Runner-up!
+
+\*\Controls\*\
+
+> Player 1
+> Up key - Jump
+> Right key - Right
+
+
+
