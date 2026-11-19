@@ -17,7 +17,7 @@ public class GameTimer : MonoBehaviour
     bool finished = false;
 
     //Used to determine start
-    public bool started = false;
+     bool started = true;
 
     string winner;
 
