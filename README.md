@@ -20,11 +20,24 @@ If you are interested to know more about how this automation works, consider rev
 
 # Runner-up!
 
-\*\Controls\*\
+A competitive racing game where 2 Players race against each other. Players have 30 seconds to make it to the farthest. Whoever makes it furthest is declared the winner. There are obstacles to jump over. If they hit an obstacle, they come to a stop and must run through it to get back into the race.
 
-> Player 1
-> Up key - Jump
-> Right key - Right
+Our objective: Can we instill competitiveness amongst 2 Players by testing their reflexes against each other?
+## Controls
 
+### Player 1
+Up key - Jump <br>
+Right key - Move right
+
+### Player 2
+W - Jump <br>
+D - Move right
+
+## Roles
+Brock Hutter - Level developer, Asset implementer
+
+Jameson Phong - Tester, Asset sourcer, Github lead 
+
+Liam McDougall - Lead programmer, Documentation 
 
 
