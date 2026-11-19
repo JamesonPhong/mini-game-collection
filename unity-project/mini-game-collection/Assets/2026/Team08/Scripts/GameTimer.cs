@@ -56,9 +56,30 @@ public class GameTimer : MonoBehaviour
                 }
                 timeRemaining -= Time.deltaTime;
 
+                RubberBand();
+
                 WinnerText.text = Mathf.CeilToInt(timeRemaining).ToString();
             }
             else if (finished == true) { WinnerText.text = winner; }
+        }
+    }
+
+    /// <summary>
+    /// After 15 seconds, the player in last place will get a free power up
+    /// </summary>
+    void RubberBand() {
+        if (Mathf.CeilToInt(timeRemaining) == 15)
+        {
+            if (player1.score1 > player2.score2)
+            {
+                Debug.Log("player 2 can activate special");
+                player2.dropItem = true;
+            }
+            else if (player1.score1 < player2.score2)
+            {
+                Debug.Log("player 1 can activate special");
+
+            }
         }
     }
 }
