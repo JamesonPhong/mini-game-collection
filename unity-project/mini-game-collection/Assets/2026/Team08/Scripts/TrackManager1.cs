@@ -119,7 +119,7 @@ public class TrackManager1 : MonoBehaviour
             else if ((speed >=  10)) { randomNumber = Random.Range(1, 300); }
             if (randomNumber == 1)
             {
-                int randomObstacle = Random.Range(0, 2);
+                int randomObstacle = Random.Range(0, 3);
                 Instantiate(obstacles[randomObstacle], new Vector3(transform.position.x + 10, transform.position.y - 2, transform.position.z), Quaternion.identity);
             }
         }

@@ -16,6 +16,9 @@ public class GameTimer : MonoBehaviour
     //Used to determine winner once
     bool finished = false;
 
+    //Used to determine start
+    public bool started = false;
+
     string winner;
 
     // Start is called before the first frame update
@@ -31,28 +34,31 @@ public class GameTimer : MonoBehaviour
     void Update()
     {
         
-   
-        if (finished == false) {
-            if(timeRemaining <= 0)
+        if (started == true)
+        {
+            if (finished == false)
             {
-                if (player1.score1 > player2.score2)
+                if (timeRemaining <= 0)
                 {
-                    winner = "Player 1 wins!";
+                    if (player1.score1 > player2.score2)
+                    {
+                        winner = "Player 1 wins!";
+                    }
+                    else if (player1.score1 < player2.score2)
+                    {
+                        winner = "Player 2 wins!";
+                    }
+                    else if (player1.score1 == player2.score2)
+                    {
+                        winner = "Tie!";
+                    }
+                    finished = true;
                 }
-                else if (player1.score1 < player2.score2)
-                {
-                    winner = "Player 2 wins!";
-                }
-                else if (player1.score1 == player2.score2)
-                {
-                    winner = "Tie!";
-                }
-                finished = true;
-            }      
-            timeRemaining -= Time.deltaTime;
-           
-            WinnerText.text = Mathf.CeilToInt(timeRemaining).ToString();
+                timeRemaining -= Time.deltaTime;
+
+                WinnerText.text = Mathf.CeilToInt(timeRemaining).ToString();
+            }
+            else if (finished == true) { WinnerText.text = winner; }
         }
-        else if (finished == true) { WinnerText.text = winner; }
     }
 }
