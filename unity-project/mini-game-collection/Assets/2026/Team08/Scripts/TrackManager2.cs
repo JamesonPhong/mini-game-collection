@@ -25,6 +25,9 @@ public class TrackManager2 : MonoBehaviour
     // Reference to the PlayerAnimations script
     public PlayerAnimations playAnims;
 
+    //Rubberband to give player an advantage
+    public bool dropItem = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +70,14 @@ public class TrackManager2 : MonoBehaviour
         {
             speed = 0;
             playAnims.anim.SetFloat("isMoving", 0);
+        }
+
+        if (Input.GetKey(KeyCode.A)){
+            if (dropItem == true){
+                Debug.Log("PLAyer 2 activated their special");
+          
+                    dropItem = false;
+            }
         }
     }
 
