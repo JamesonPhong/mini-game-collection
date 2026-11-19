@@ -6,8 +6,8 @@ using UnityEngine.UIElements;
 public class Player1Jump : MonoBehaviour
 {   
     float position;
-
-    float timer = 175;
+    public float airTime = 175;
+    float timer;
 
     bool hasJumped;
 
@@ -19,6 +19,7 @@ public class Player1Jump : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timer = airTime;
         position = transform.position.y;
 
         // Get the PlayerAnimations component from the Player1 GameObject
@@ -46,7 +47,7 @@ public class Player1Jump : MonoBehaviour
             {
                 position -= 2;
                 hasJumped = false;
-                timer = 175;
+                timer = airTime;
                 playAnims.anim.SetBool("isJumping", false); // Sets the animation back to running / idle
             }
             else if (timer >= 0) { timer = timer - 1; } //Counts down how long they can stay in the air

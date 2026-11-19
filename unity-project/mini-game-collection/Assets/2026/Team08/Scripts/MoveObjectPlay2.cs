@@ -10,7 +10,7 @@ public class MoveObjectPlay2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        player = FindObjectOfType<TrackManager2>();
     }
 
     // Update is called once per frame

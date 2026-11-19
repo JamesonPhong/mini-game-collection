@@ -1,10 +1,13 @@
 
 using UnityEngine;
+using static MiniGameCollection.ArcadeInput;
 
 
 public class TrackManager1 : MonoBehaviour
 {
     public GameObject[] trackSegments;
+
+    public GameObject[] obstacles;
 
     public float score1;
 
@@ -23,16 +26,21 @@ public class TrackManager1 : MonoBehaviour
     // Reference to the PlayerAnimations script
     public PlayerAnimations playAnims;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         // Get the PlayerAnimations component from the Player1 GameObject
         playAnims = GameObject.Find("Player1").GetComponent<PlayerAnimations>();
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        SpawnObjects();
         if (Input.GetKey(KeyCode.RightArrow))
         {
             speed = Mathf.Min(speed + acceleration * Time.deltaTime, speedCap);
@@ -58,6 +66,9 @@ public class TrackManager1 : MonoBehaviour
             }
             // Set the "isMoving" parameter in the Animator to 1 when the player is moving
             playAnims.anim.SetFloat("isMoving", 1);
+
+
+
 
         }
         else
@@ -91,5 +102,27 @@ public class TrackManager1 : MonoBehaviour
 
     public float GetSpeed(){
         return speed;
+    }
+
+    /// <summary>
+    /// Spawns objects as player travels
+    /// </summary>
+    public void SpawnObjects(){
+        //int tempScore = Mathf.FloorToInt(score1 );
+        if (score1 > 1) //Will not generate object when player is first starting
+        {
+            int randomNumber = 0;
+            if (speed < 2) { randomNumber = Random.Range(1, 3000); }
+            else if ((speed >= 2)&&(speed < 4)) { randomNumber = Random.Range(1, 2000); }
+            else if ((speed >= 4) && (speed < 7)) { randomNumber = Random.Range(1, 1000); }
+            else if ((speed >= 7) && (speed < 10)) { randomNumber = Random.Range(1, 500); }
+            else if ((speed >=  10)) { randomNumber = Random.Range(1, 300); }
+            if (randomNumber == 1)
+            {
+                int randomObstacle = Random.Range(0, 3);
+                Instantiate(obstacles[randomObstacle], new Vector3(transform.position.x + 10, transform.position.y - 2, transform.position.z), Quaternion.identity);
+            }
+        }
+        
     }
 }
