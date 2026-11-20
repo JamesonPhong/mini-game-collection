@@ -2630,7 +2630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69befdac6452d3d418f9c7e69014b2a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airTime: 195
+  airTime: 230
   playAnims: {fileID: 0}
 --- !u!1 &517955531 stripped
 GameObject:
@@ -2721,9 +2721,9 @@ MonoBehaviour:
   score1: 0
   startingSpeed: 5
   acceleration: 3
-  maxSpeed: 20
+  showSpeed: 0
   segmentWidth: 0.9
-  speedCap: 10
+  speedCap: 23
   playAnims: {fileID: 0}
 --- !u!1 &574357212
 GameObject:
@@ -4278,7 +4278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3446fd00dd7fec64699667383875b5c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airTime: 195
+  airTime: 230
   playAnims: {fileID: 0}
 --- !u!1 &814244904
 GameObject:
@@ -5568,9 +5568,8 @@ MonoBehaviour:
   score2: 0
   startingSpeed: 5
   acceleration: 3
-  maxSpeed: 20
   segmentWidth: 0.9
-  speedCap: 10
+  speedCap: 23
   playAnims: {fileID: 0}
   dropItem: 0
 --- !u!1 &1313199019 stripped
