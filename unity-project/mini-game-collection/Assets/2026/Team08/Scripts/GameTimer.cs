@@ -11,7 +11,7 @@ public class GameTimer : MonoBehaviour
     //Text of timer to display on screen. Will also show winner
     private TextMeshProUGUI WinnerText;
 
-    float timeRemaining = 30;
+    float timeRemaining = 45;
 
     //Used to determine winner once
     bool finished = false;

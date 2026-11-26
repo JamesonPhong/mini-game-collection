@@ -16,12 +16,13 @@ public class TrackManager1 : MonoBehaviour
 
     private float speed;
 
-    public float maxSpeed = 15f;
+    public float showSpeed;
+
 
     public float segmentWidth = 1f;
 
     //Limits how fast the player can go
-    public float speedCap = 7f;
+    public float speedCap;
 
     // Reference to the PlayerAnimations script
     public PlayerAnimations playAnims;
@@ -40,6 +41,7 @@ public class TrackManager1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        showSpeed = speed;
         SpawnObjects();
         if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -73,7 +75,7 @@ public class TrackManager1 : MonoBehaviour
         }
         else
         {
-            speed = 0;
+            speed = speed / 1.1f;
             playAnims.anim.SetFloat("isMoving", 0);
         }
     }
@@ -97,7 +99,7 @@ public class TrackManager1 : MonoBehaviour
     }
     public void ResetSpeed()
     {
-        speed = 0f;
+        speed = speed /4f;
     }
 
     public float GetSpeed(){
@@ -112,11 +114,13 @@ public class TrackManager1 : MonoBehaviour
         if (score1 > 1) //Will not generate object when player is first starting
         {
             int randomNumber = 0;
-            if (speed < 2) { randomNumber = Random.Range(1, 3000); }
-            else if ((speed >= 2)&&(speed < 4)) { randomNumber = Random.Range(1, 2000); }
+            if (speed < 2) { randomNumber = Random.Range(1, 2000); }
+            else if ((speed >= 2) && (speed < 4)) { randomNumber = Random.Range(1, 1500); }
             else if ((speed >= 4) && (speed < 7)) { randomNumber = Random.Range(1, 1000); }
-            else if ((speed >= 7) && (speed < 10)) { randomNumber = Random.Range(1, 500); }
-            else if ((speed >=  10)) { randomNumber = Random.Range(1, 300); }
+            else if ((speed >= 7) && (speed < 10)) { randomNumber = Random.Range(1, 750); }
+            else if ((speed >= 10) && (speed < 15)) { randomNumber = Random.Range(1, 400); }
+            else if ((speed >= 15) && (speed < 20)) { randomNumber = Random.Range(1, 300); }
+            else if ((speed >= 20)) { randomNumber = Random.Range(1, 175); }
             if (randomNumber == 1)
             {
                 int randomObstacle = Random.Range(0, 3);
