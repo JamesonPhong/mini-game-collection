@@ -6,11 +6,13 @@ public class MoveObjectPlay2 : MonoBehaviour
 {
     //Player script to recieve the public float score of the first player. 
     public TrackManager2 player;
+    private AudioSource collisionSound;
 
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<TrackManager2>();
+        collisionSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class MoveObjectPlay2 : MonoBehaviour
         //Checks if colliding with player 1
         if (collision.gameObject.CompareTag("Player2"))
         {
+            collisionSound.Play();
 
             //Turns off the collision of the object so player can move past 
             GetComponent<BoxCollider2D>().enabled = false;
