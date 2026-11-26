@@ -8,8 +8,8 @@ public class Player2Jump : MonoBehaviour
     float position;
     public float airTime = 175;
     float timer;
-
-    bool hasJumped;
+    public AudioSource jumpSound;
+    public bool hasJumped;
 
     // Reference to the PlayerAnimations script
     public PlayerAnimations playAnims;
@@ -35,6 +35,7 @@ public class Player2Jump : MonoBehaviour
                 hasJumped = true;
                 position += 2; //Moves their y position up
                 playAnims.anim.SetBool("isJumping", true); // Sets the animation to jumping
+                jumpSound.Play();
             }
 
 
